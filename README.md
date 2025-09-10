@@ -3,8 +3,8 @@
 <h3 align="center">Frontend-focused Developer • UX/UI-minded • Based in Chicago</h3>
 
 <p align="center">
-  <a href="https://yurii.dev" target="_blank">
-    <img src="https://img.shields.io/badge/Portfolio-yurii.dev-informational?logo=vercel" />
+  <a href="https://yurii-dev.netlify.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Portfolio-yurii-dev-informational?logo=vercel" />
   </a>
   <a href="https://www.linkedin.com/in/yurii-tovarnytskyi" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-Yurii%20Tovarnytskyi-blue?logo=linkedin" />
