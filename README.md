@@ -24,7 +24,7 @@
 - 🔭 Currently building: **WUUXY**
 - 🌱 Learning: **Python**
 - 👯 Open to: **Startup collaborations**
-- 👨‍💻 Projects: **[yurii.dev](https://yurii.dev)**
+- 👨‍💻 Projects: **[yurii.dev](https://yurii-dev.netlify.app/)**
 - 💬 Ask me about: **React, Next.js, UX/UI, and turning ideas into shippable MVPs**
 - 📫 Reach me: **pushokv165@gmail.com**
 
