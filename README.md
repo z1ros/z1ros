@@ -21,7 +21,7 @@
 
 ---
 
-- 🔭 Currently building: **WUUXY**
+- 🔭 Currently building: **Noetia**
 - 🌱 Learning: **Python**
 - 👯 Open to: **Startup collaborations**
 - 👨‍💻 Projects: **[yurii.dev](https://yurii-dev.netlify.app/)**
