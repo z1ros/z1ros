@@ -21,12 +21,12 @@
 
 ---
 
-- 🔭 Currently building: **Noetia**
-- 🌱 Learning: **Python**
+- 🔭 Currently building: **Protege**
+- 🌱 Learning: **Deep machine learning**
 - 👯 Open to: **Startup collaborations**
 - 👨‍💻 Projects: **[yurii.dev](https://yurii-dev.netlify.app/)**
 - 💬 Ask me about: **React, Next.js, UX/UI, and turning ideas into shippable MVPs**
-- 📫 Reach me: **pushokv165@gmail.com**
+- 📫 Reach me: **yurii@aximon.ai**
 
 ---
 
