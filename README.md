@@ -53,12 +53,7 @@ Building **[Husky](https://aximon.ai/)** — underwriting and deal intelligence 
 ## `> github_signal`
 
 <p align="center">
-  <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=z1ros&theme=github_dark" alt="Yurii's GitHub stats" />
-  <img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=z1ros&theme=github-dark-blue&hide_border=true" alt="Yurii's contribution streak" />
-</p>
-
-<p align="center">
-  <img width="100%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=z1ros&theme=github_dark" alt="Yurii's GitHub contribution history" />
+  <img width="100%" src="./assets/stats.svg" alt="July 2026 GitHub snapshot: 2,048 total contributions, 453 public commits, 863 contributions in the last year, and a 16 day longest streak" />
 </p>
 
 <details>
