@@ -1,48 +1,75 @@
-<div align="center">
+<p align="center">
+  <img src="./assets/hero.svg" width="100%" alt="Yurii Tovarnytskyi — founder, engineer, designer" />
+</p>
 
-# Yurii Tovarnytskyi
+<p align="center">
+  <a href="https://aximon.ai/"><img src="https://img.shields.io/badge/HUSKY-7C3AED?style=for-the-badge&logo=proton&logoColor=white" alt="Husky" /></a>
+  <a href="https://www.yurii.blog/"><img src="https://img.shields.io/badge/WRITING-111827?style=for-the-badge&logo=substack&logoColor=white" alt="Writing" /></a>
+  <a href="https://www.linkedin.com/in/yurii-tovarnytskyi/"><img src="https://img.shields.io/badge/LINKEDIN-2563EB?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:yurii@aximon.ai"><img src="https://img.shields.io/badge/EMAIL-059669?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+</p>
 
-### founder · engineer · designer
+<p align="center">
+  <img src="https://img.shields.io/badge/5%2B_YEARS-SHIPPING-18181B?style=flat-square&labelColor=27272A" alt="5+ years shipping" />
+  <img src="https://img.shields.io/badge/20%2B_COMMERCIAL-CONTRACTS-18181B?style=flat-square&labelColor=27272A" alt="20+ commercial contracts" />
+  <img src="https://img.shields.io/badge/4_HACK-WINS-18181B?style=flat-square&labelColor=27272A" alt="4 hack wins" />
+  <img src="https://img.shields.io/badge/4X_HACK-JUDGE-18181B?style=flat-square&labelColor=27272A" alt="4x hack judge" />
+</p>
 
-I'm building [Husky](https://aximon.ai/), software for the future of commercial real estate.
+## `> current_mission`
 
-[Website](https://www.yurii.blog/) · [LinkedIn](https://www.linkedin.com/in/yurii-tovarnytskyi/) · [Email](mailto:yurii@aximon.ai)
+Building **[Husky](https://aximon.ai/)** — underwriting and deal intelligence for commercial real estate teams. Screen every deal, trace every number, and rehearse what happens before the money moves.
 
-</div>
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>01 / build</strong><br/><br/>
+      Product, engineering, and design at Husky.<br/>
+      <sub>AI infrastructure for better CRE decisions.</sub>
+    </td>
+    <td width="50%" valign="top">
+      <strong>02 / write</strong><br/><br/>
+      Field notes at <a href="https://www.yurii.blog/">Zero Dev</a>.<br/>
+      <sub>Startups, engineering, and the road from a Ukrainian village to Silicon Valley.</sub>
+    </td>
+  </tr>
+</table>
 
----
+## `> selected_builds`
 
-I grew up in a small village in Ukraine and started building websites at 13. Since then, I've shipped products, worked at startups, won hackathons, judged a few more, and failed enough ideas to learn what actually matters: make something useful and get it into people's hands.
+| | |
+| --- | --- |
+| **[Planneeer](https://github.com/z1ros/planneeer)**<br><sub>🏆 Hack@Brown 2026 winner. AI-powered NYC adventure planning.</sub> | **[PitchPerfect](https://github.com/z1ros/runanywhere-pitch-coach)**<br><sub>🎙️ Fully on-device speech transcription and pitch coaching.</sub> |
+| **[Nori](https://github.com/z1ros/nori)**<br><sub>🌎 Portable financial trust profiles for immigrants entering the US.</sub> | **[Tatra Capital Group](https://github.com/z1ros/tatracapitalgroup)**<br><sub>🏢 Production platform for a Central European investment group.</sub> |
 
-Right now, most of my code is private because it belongs to products and clients. The public repos below are a mix of experiments, hackathon builds, and older work.
+## `> stack`
 
-## what I'm working on
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=ts,nextjs,react,nodejs,python,postgres,supabase,aws,figma&theme=dark&perline=9" alt="TypeScript, Next.js, React, Node.js, Python, PostgreSQL, Supabase, AWS, and Figma" />
+</p>
 
-**[Husky](https://aximon.ai/)** — commercial real estate software. I'm building the product, engineering, and design.
+<p align="center"><sub>the stack changes. shipping doesn't.</sub></p>
 
-**[Zero Dev](https://www.yurii.blog/)** — essays and field notes about startups, engineering, and the road from a Ukrainian village to building companies in the US.
+## `> github_signal`
 
-## selected builds
+<p align="center">
+  <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=z1ros&theme=github_dark" alt="Yurii's GitHub stats" />
+  <img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=z1ros&theme=github-dark-blue&hide_border=true" alt="Yurii's contribution streak" />
+</p>
 
-| project | what it is | stack |
-| --- | --- | --- |
-| [Planneeer](https://github.com/z1ros/planneeer) | Hack@Brown 2026 winner: an AI-powered NYC adventure planner | TypeScript |
-| [RunAnywhere Pitch Coach](https://github.com/z1ros/runanywhere-pitch-coach) | speech coaching with fully on-device transcription and feedback | React Native / TypeScript |
-| [Nori](https://github.com/z1ros/nori) | a portable financial trust profile for immigrants entering the US | Next.js / TypeScript |
-| [Tatra Capital Group](https://github.com/z1ros/tatracapitalgroup) | production site for a Central European investment group | TypeScript |
-| [Yurii.dev](https://github.com/z1ros/yurii.dev-portfolio) | my earlier design and frontend portfolio | JavaScript / SCSS |
+<p align="center">
+  <img width="100%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=z1ros&theme=github_dark" alt="Yurii's GitHub contribution history" />
+</p>
 
-## tools I reach for
+<details>
+  <summary><strong>the longer story</strong></summary>
+  <br/>
+  I grew up in a small village in Ukraine and started building websites as a teenager. Since then I've moved through four countries, worked across design, engineering, CTO, and founder roles, shipped products for startups and clients, won hackathons, and failed enough companies to stop romanticizing ideas. I care about useful software, speed, and getting the work into people's hands.
+</details>
 
-`TypeScript` `React` `Next.js` `Node.js` `Python` `PostgreSQL` `Supabase` `AWS` `Figma`
+<br/>
 
-I care more about shipping the right product than defending a stack.
-
-## elsewhere
-
-I write at **[yurii.blog](https://www.yurii.blog/)**. Start with:
-
-- [How to get an internship in 2026](https://www.yurii.blog/essays/how-to-get-an-internship-in-2026)
-- [The story behind Mark Zuckerberg](https://www.yurii.blog/essays/the-story-behind-mark-zuckerberg)
-
-If you're building something ambitious, email me at **[yurii@aximon.ai](mailto:yurii@aximon.ai)**.
+<p align="center">
+  <strong>outwork. outsmart. outlast.</strong><br/>
+  <sub><a href="https://www.yurii.blog/">yurii.blog</a> · <a href="mailto:yurii@aximon.ai">yurii@aximon.ai</a></sub>
+</p>
