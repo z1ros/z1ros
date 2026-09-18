@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the static cards: skills, experience, judged, builds.
+// Builds the static cards: skills, experience, judged.
 // Usage: node scripts/build-cards.mjs   (needs rsvg-convert for the logo PNGs)
 
 import { writeFileSync, readFileSync } from "node:fs";
@@ -16,43 +16,58 @@ const RIGHT = W - PAD;
 // ------------------------------------------------------------------ skills
 
 const SKILLS = [
-  ["languages", ["typescript", "javascript", "python", "sql", "swift", "bash"]],
-  ["frontend", ["next.js", "react", "react native", "tailwind", "shadcn/ui", "framer motion", "three.js"]],
-  ["backend", ["node", "supabase", "postgres", "pgvector", "redis", "graphql", "rest", "websockets", "edge functions"]],
-  ["infra", ["aws", "vercel", "docker", "github actions", "cloudflare", "stripe", "sentry", "posthog"]],
+  ["languages", ["typescript", "javascript", "python", "sql", "swift", "bash", "html / css"]],
+  [
+    "frontend",
+    ["next.js app router", "react", "react native / expo", "tailwind", "shadcn/ui", "radix", "framer motion", "zustand", "tanstack query", "react hook form", "zod", "three.js", "vite"],
+  ],
+  [
+    "backend",
+    ["node", "bun", "hono", "express", "fastapi", "trpc", "prisma", "drizzle", "supabase", "postgres", "pgvector", "redis", "graphql", "websockets", "edge functions", "queues / cron"],
+  ],
+  ["infra", ["aws (s3, lambda, ec2)", "vercel", "cloudflare workers", "docker", "github actions", "stripe", "sentry", "posthog", "resend", "playwright"]],
   [
     "ai / ml",
     [
-      "llm apps",
-      "rag",
-      "agents",
-      "tool use",
-      "mcp",
-      "claude api",
-      "openai api",
-      "prompt engineering",
-      "evals",
-      "structured extraction",
-      "document ai",
-      "ocr",
-      "embeddings",
-      "vector search",
-      "fine-tuning",
-      "whisper",
-      "speech-to-text",
-      "on-device inference",
-      "pytorch",
-      "hugging face",
+      "anthropic sdk",
+      "openai sdk",
+      "vercel ai sdk",
       "langchain",
+      "langgraph",
+      "llamaindex",
+      "mcp servers",
+      "tool calling",
+      "structured outputs",
+      "agent orchestration",
       "multi-agent systems",
-      "eval harnesses",
+      "computer use / browser agents",
+      "agentic coding (claude code)",
+      "rag pipelines",
+      "hybrid search (bm25 + vectors)",
+      "reranking",
+      "chunking strategies",
+      "embeddings",
+      "pgvector / pinecone",
+      "prompt caching",
+      "context engineering",
+      "evals (promptfoo, braintrust)",
+      "llm-as-judge",
       "guardrails",
+      "observability (langfuse)",
+      "model routing",
       "cost / latency tuning",
+      "document ai (pdf, ocr, layout)",
+      "whisper",
+      "on-device inference (core ml, llama.cpp)",
+      "pytorch",
+      "hugging face transformers",
+      "lora fine-tuning",
     ],
     true,
   ],
-  ["design", ["product design", "design systems", "figma", "brand", "motion", "prototyping", "ux research"]],
-  ["founder", ["0 → 1", "gtm", "sales calls", "pitching", "hiring", "fundraising", "short-form content"]],
+  ["data", ["pandas", "numpy", "jupyter", "openpyxl / excel automation", "pdfplumber", "scraping (playwright, puppeteer)", "sql analytics"]],
+  ["design", ["product design", "design systems", "figma", "brand identity", "motion", "prototyping", "ux research", "figma → code"]],
+  ["founder", ["0 → 1", "gtm", "discovery calls", "pitching", "hiring", "fundraising", "short-form content"]],
 ];
 
 function skillsCard() {
@@ -187,40 +202,7 @@ function judgedCard() {
   });
 }
 
-// ------------------------------------------------------------------ builds
-
-const BUILDS = [
-  { name: "planneeer", tag: "hack@brown 2026 · 1st", blurb: "ai-powered nyc adventure planning" },
-  { name: "pitchperfect", tag: "on-device ai", blurb: "fully on-device speech transcription and pitch coaching" },
-  { name: "nori", tag: "fintech", blurb: "portable financial trust profiles for us immigrants" },
-  { name: "tatra-capital", tag: "production", blurb: "platform for a central european investment group" },
-];
-
-function buildsCard() {
-  const colW = (W - PAD * 2 - 16) / 2;
-  const ROW_H = 92;
-  let body = "";
-  BUILDS.forEach((b, i) => {
-    const x = PAD + (i % 2) * (colW + 16);
-    const y = BODY_Y + Math.floor(i / 2) * (ROW_H + 16);
-    body += `<rect x="${x}" y="${y}" width="${colW}" height="${ROW_H}" rx="10" fill="${C.pill}" stroke="${C.pillStroke}"/>`;
-    body += `<text x="${x + 20}" y="${y + 32}"><tspan fill="${C.key}">~/builds/</tspan><tspan fill="${C.value}" font-weight="700">${esc(b.name)}</tspan></text>`;
-    body += `<text x="${x + colW - 20}" y="${y + 32}" fill="${C.accent}" font-size="12" text-anchor="end">${esc(b.tag)}</text>`;
-    body += `<text x="${x + 20}" y="${y + 62}" fill="${C.dim}" font-size="12">${esc(b.blurb)}</text>`;
-  });
-  const rows = Math.ceil(BUILDS.length / 2);
-  return card({
-    cmd: "ls ~/builds",
-    label: "selected · links below",
-    body,
-    height: BODY_Y + rows * (ROW_H + 16) - 16 + PAD,
-    title: "selected builds",
-    desc: BUILDS.map((b) => `${b.name}: ${b.blurb} (${b.tag})`).join(". "),
-  });
-}
-
 out("skills.svg", skillsCard());
 out("experience.svg", experienceCard());
 out("judged.svg", judgedCard());
-out("builds.svg", buildsCard());
-console.log("built skills, experience, judged, builds");
+console.log("built skills, experience, judged");

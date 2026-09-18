@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/skills.svg" width="100%" alt="skills: languages, frontend, backend, infra, ai/ml, design, founder" />
+  <img src="./assets/skills.svg" width="100%" alt="skills: languages, frontend, backend, infra, ai/ml, data, design, founder" />
 </p>
 
 <p align="center">
@@ -17,20 +17,6 @@
 <p align="center">
   <img src="./assets/judged.svg" width="100%" alt="hackathons judged: hackharvard, hackillinois, la hacks, wildhacks" />
 </p>
-
-<p align="center">
-  <img src="./assets/builds.svg" width="100%" alt="selected builds: planneeer, pitchperfect, nori, tatra capital" />
-</p>
-
-<p align="center">
-  <sub><a href="https://github.com/z1ros/planneeer">planneeer</a> · <a href="https://github.com/z1ros/runanywhere-pitch-coach">pitchperfect</a> · <a href="https://github.com/z1ros/nori">nori</a> · <a href="https://github.com/z1ros/tatracapitalgroup">tatra capital</a></sub>
-</p>
-
-<details>
-  <summary><sub>the longer story</sub></summary>
-  <br/>
-  <sub>grew up in a small village in ukraine and started building websites as a teenager. dropped out of the best engineering high school in czechia, bounced between top prague agencies, spent 2,000 hours as a cto, went from english a1 to c1 in 9 months, and landed in chicago with $5k. started protege, got into antler s26, pivoted to husky. four countries, roles across design, engineering, cto, and founder, and enough failed companies to stop romanticizing ideas. i care about useful software, speed, and getting the work into people's hands.</sub>
-</details>
 
 <br/>
 
