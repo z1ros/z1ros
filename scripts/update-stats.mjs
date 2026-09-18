@@ -135,7 +135,7 @@ const desc = `${now.toLocaleString("en-US", { month: "long", year: "numeric", ti
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const W = 1000;
-const H = 640;
+let H = 640; // finalized after layout
 const PAD = 48;
 const FONT = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace";
 
@@ -194,13 +194,14 @@ const lines = [
   kv("name", "yurii tovarnytskyi"),
   kv("role", "founder · engineer · designer"),
   kv("building", "husky @ aximon.ai, underwriting ai for cre teams"),
+  kv("traction", "$60k contracted in 5 weeks · backed by an a16z scout"),
   kv("route", "ukraine → prague → chicago → san francisco"),
   kv("stack", "ts · next · react · node · python · postgres"),
   kv("ai/ml", "llm pipelines · rag · agents · evals · on-device"),
-  kv("judged", "hackharvard · hackillinois · wildhacks · uncommonhacks"),
-  kv("mentored", "la hacks · won hack@brown 2026"),
+  kv("judged", "harvard · uiuc · ucla · northwestern · uchicago"),
+  kv("won", "4 hacks · hack@brown 2026 · uchicago · northwestern"),
   kv("writing", "yurii.blog"),
-  kv("tags", "antler s26 · ex-yc eng · 4 hack wins · 4x judge"),
+  kv("tags", "antler s26 · ex-yc eng · cto · 5x hack judge"),
   blank(),
   headline("signal"),
   kv("all-time", `${fmtNum(total)} contributions since ${sinceLabel}`),
@@ -238,6 +239,7 @@ text += `<rect class="cursor" x="${TEXT_X + 86}" y="${cursorY}" width="8" height
 
 // Palette strip under the tapestry, like neofetch's color blocks.
 const legendY = TAP_Y + TAP_H + 20;
+H = Math.max(legendY + 12, textY) + PAD;
 const legend = C.heat
   .map((c, i) => `<rect x="${TAP_X + i * 18}" y="${legendY}" width="12" height="12" rx="2" fill="${c}"/>`)
   .join("");
