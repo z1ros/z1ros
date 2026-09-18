@@ -117,11 +117,11 @@ const EXPERIENCE = [
   {
     when: "2026 → now",
     role: "cto",
-    org: "husky · aximon.ai",
+    org: "aximon · aximon.ai",
     blurb: "underwriting ai for cre teams · $60k contracted in 5 weeks · backed by an a16z scout",
     live: true,
   },
-  { when: "2026", role: "founder in residence", org: "antler s26", blurb: "san francisco · ~2% acceptance · pivoted protege → husky" },
+  { when: "2026", role: "founder in residence", org: "antler s26", blurb: "san francisco · ~2% acceptance · pivoted protege → aximon" },
   { when: "2026", role: "ceo", org: "protege", blurb: "ai coding mentor that lives in your editor · 1.6k downloads · sh1p s26" },
   { when: "2026", role: "cto", org: "nymble", blurb: "early-stage build" },
   { when: "2025", role: "cto", org: "stealth startup · brno", blurb: "2,000 hours · walked away when the bar stopped rising" },

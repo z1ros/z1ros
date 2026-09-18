@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <sub><a href="https://aximon.ai/">husky</a> · <a href="https://www.yurii.blog/">writing</a> · <a href="https://www.linkedin.com/in/yurii-tovarnytskyi/">linkedin</a> · <a href="mailto:yurii@aximon.ai">email</a></sub>
+  <sub><a href="https://aximon.ai/">aximon</a> · <a href="https://www.yurii.blog/">writing</a> · <a href="https://www.linkedin.com/in/yurii-tovarnytskyi/">linkedin</a> · <a href="mailto:yurii@aximon.ai">email</a></sub>
 </p>
 
 <p align="center">
@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/experience.svg" width="100%" alt="experience: cto at husky, antler s26, protege, nymble, feedyou, cuub, highlight, udox" />
+  <img src="./assets/experience.svg" width="100%" alt="experience: cto at aximon, antler s26, protege, nymble, feedyou, cuub, highlight, udox" />
 </p>
 
 <p align="center">
