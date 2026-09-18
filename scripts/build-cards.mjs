@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the static cards: skills, experience, judged.
+// Builds the static cards: skills, ai, experience, judged.
 // Usage: node scripts/build-cards.mjs   (needs rsvg-convert for the logo PNGs)
 
 import { writeFileSync, readFileSync } from "node:fs";
@@ -26,53 +26,42 @@ const SKILLS = [
     ["node", "bun", "hono", "express", "fastapi", "trpc", "prisma", "drizzle", "supabase", "postgres", "pgvector", "redis", "graphql", "websockets", "edge functions", "queues / cron"],
   ],
   ["infra", ["aws (s3, lambda, ec2)", "vercel", "cloudflare workers", "docker", "github actions", "stripe", "sentry", "posthog", "resend", "playwright"]],
-  [
-    "ai / ml",
-    [
-      "anthropic sdk",
-      "openai sdk",
-      "vercel ai sdk",
-      "langchain",
-      "langgraph",
-      "llamaindex",
-      "mcp servers",
-      "tool calling",
-      "structured outputs",
-      "agent orchestration",
-      "multi-agent systems",
-      "computer use / browser agents",
-      "agentic coding (claude code)",
-      "rag pipelines",
-      "hybrid search (bm25 + vectors)",
-      "reranking",
-      "chunking strategies",
-      "embeddings",
-      "pgvector / pinecone",
-      "prompt caching",
-      "context engineering",
-      "evals (promptfoo, braintrust)",
-      "llm-as-judge",
-      "guardrails",
-      "observability (langfuse)",
-      "model routing",
-      "cost / latency tuning",
-      "document ai (pdf, ocr, layout)",
-      "whisper",
-      "on-device inference (core ml, llama.cpp)",
-      "pytorch",
-      "hugging face transformers",
-      "lora fine-tuning",
-    ],
-    true,
-  ],
   ["data", ["pandas", "numpy", "jupyter", "openpyxl / excel automation", "pdfplumber", "scraping (playwright, puppeteer)", "sql analytics"]],
   ["design", ["product design", "design systems", "figma", "brand identity", "motion", "prototyping", "ux research", "figma → code"]],
   ["founder", ["0 → 1", "gtm", "discovery calls", "pitching", "hiring", "fundraising", "short-form content"]],
 ];
 
-function skillsCard() {
+
+const AI = [
+  [
+    "llm engineering",
+    ["anthropic sdk", "openai sdk", "gemini api", "vercel ai sdk", "streaming (sse)", "tool calling", "structured outputs (json schema, zod)", "prompt caching", "batch api", "extended thinking", "vision / multimodal", "long-context strategies", "token budgeting", "model routing + fallbacks", "retries / rate limits", "cost & latency tuning"],
+  ],
+  [
+    "agents",
+    ["react / plan-execute loops", "langgraph", "mcp servers + clients", "multi-agent orchestration", "tool design + sandboxing", "agent memory (episodic, vector)", "human-in-the-loop", "computer use", "browser agents (playwright)", "coding agents (claude code, codex)", "agent tracing + replay"],
+  ],
+  [
+    "retrieval",
+    ["rag pipelines", "chunking (semantic, recursive, layout-aware)", "embeddings (text-embedding-3, voyage, bge)", "pgvector", "pinecone", "qdrant", "hybrid search (bm25 + vectors)", "reranking (cohere, cross-encoders)", "query rewriting / hyde", "metadata filtering", "citation grounding", "graph rag"],
+  ],
+  [
+    "document ai",
+    ["pdf parsing (pymupdf, pdfplumber, unstructured)", "ocr (tesseract, textract, azure di)", "layout + table extraction", "excel / rent roll / t12 parsing", "schema-driven extraction", "confidence scoring", "source-linked outputs", "entity resolution + dedup"],
+  ],
+  [
+    "evals & safety",
+    ["golden sets + regression suites", "promptfoo", "braintrust", "llm-as-judge", "rubric grading", "a/b prompt testing", "input / output guardrails", "pii redaction", "prompt injection defense", "red-teaming", "observability (langfuse, helicone)"],
+  ],
+  [
+    "models & training",
+    ["pytorch", "hugging face transformers", "lora / qlora (peft)", "distillation", "quantization (gguf, int4/8)", "llama.cpp", "vllm / ollama serving", "core ml", "whisper / faster-whisper", "speech-to-text pipelines", "embedding fine-tuning", "sklearn / xgboost"],
+  ],
+];
+
+function pillsCard(GROUPS, { cmd, label, title, hot = false }) {
   const LABEL_X = PAD;
-  const PILL_X = PAD + 124;
+  const PILL_X = PAD + 164;
   const PILL_H = 28;
   const PILL_FS = 13;
   const PAD_X = 12;
@@ -81,7 +70,7 @@ function skillsCard() {
   const GROUP_GAP = 14;
   let y = BODY_Y;
   let body = "";
-  for (const [label, items, hot] of SKILLS) {
+  for (const [label, items] of GROUPS) {
     let x = PILL_X;
     let rowY = y;
     body += `<text x="${LABEL_X}" y="${rowY + 18}" fill="${C.key}" font-size="12">${esc(label)}</text>`;
@@ -100,16 +89,19 @@ function skillsCard() {
     }
     y = rowY + LINE + GROUP_GAP;
   }
-  const count = SKILLS.reduce((n, [, items]) => n + items.length, 0);
+  const count = GROUPS.reduce((n, [, items]) => n + items.length, 0);
   return card({
-    cmd: "skills --all",
-    label: `${count} tags · ai/ml highlighted`,
+    cmd,
+    label: `${count} ${label}`,
     body,
     height: y - GROUP_GAP + PAD - 8,
-    title: "skills",
-    desc: SKILLS.map(([l, i]) => `${l}: ${i.join(", ")}`).join(". "),
+    title,
+    desc: GROUPS.map(([l, i]) => `${l}: ${i.join(", ")}`).join(". "),
   });
 }
+
+const skillsCard = () => pillsCard(SKILLS, { cmd: "skills --all", label: "tags", title: "skills" });
+const aiCard = () => pillsCard(AI, { cmd: "skills --ai", label: "tags · shipped in production", title: "ai / llm engineering", hot: true });
 
 // -------------------------------------------------------------- experience
 
@@ -203,6 +195,7 @@ function judgedCard() {
 }
 
 out("skills.svg", skillsCard());
+out("ai.svg", aiCard());
 out("experience.svg", experienceCard());
 out("judged.svg", judgedCard());
-console.log("built skills, experience, judged");
+console.log("built skills, ai, experience, judged");

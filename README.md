@@ -7,7 +7,11 @@
 </p>
 
 <p align="center">
-  <img src="./assets/skills.svg" width="100%" alt="skills: languages, frontend, backend, infra, ai/ml, data, design, founder" />
+  <img src="./assets/ai.svg" width="100%" alt="ai / llm engineering: llm engineering, agents, retrieval, document ai, evals and safety, models and training" />
+</p>
+
+<p align="center">
+  <img src="./assets/skills.svg" width="100%" alt="skills: languages, frontend, backend, infra, data, design, founder" />
 </p>
 
 <p align="center">
