@@ -108,7 +108,6 @@ const EXPERIENCE = [
   },
   { when: "2026", role: "founder in residence", org: "antler s26", blurb: "san francisco · ~2% acceptance · pivoted protege → husky" },
   { when: "2026", role: "ceo", org: "protege", blurb: "ai coding mentor that lives in your editor · 1.6k downloads · sh1p s26" },
-  { when: "2026", role: "design engineer", org: "runanywhere · yc w26", blurb: "on-device ai infrastructure · shipped pitchperfect on their sdk" },
   { when: "2026", role: "cto", org: "nymble", blurb: "early-stage build" },
   { when: "2025", role: "cto", org: "stealth startup · brno", blurb: "2,000 hours · walked away when the bar stopped rising" },
   { when: "2025", role: "software engineer", org: "feedyou", blurb: "solo-shipped a $22k ai support agent · #1 microsoft ai 2019" },
@@ -136,7 +135,7 @@ function experienceCard() {
     body += `<text x="${TEXT_X}" y="${y + 25}" fill="${C.dim}" font-size="12">${esc(e.blurb)}</text>`;
   });
   return card({
-    cmd: "tail -n 10 experience.log",
+    cmd: "tail -n 9 experience.log",
     label: "swe → cto → design → founder",
     body,
     height: bottom + 30 + PAD,
@@ -193,7 +192,7 @@ function judgedCard() {
 
 const BUILDS = [
   { name: "planneeer", tag: "hack@brown 2026 · 1st", blurb: "ai-powered nyc adventure planning" },
-  { name: "pitchperfect", tag: "runanywhere sdk", blurb: "fully on-device speech transcription and pitch coaching" },
+  { name: "pitchperfect", tag: "on-device ai", blurb: "fully on-device speech transcription and pitch coaching" },
   { name: "nori", tag: "fintech", blurb: "portable financial trust profiles for us immigrants" },
   { name: "tatra-capital", tag: "production", blurb: "platform for a central european investment group" },
 ];

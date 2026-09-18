@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/experience.svg" width="100%" alt="experience: cto at husky, antler s26, protege, runanywhere (yc w26), nymble, feedyou, cuub, highlight, udox" />
+  <img src="./assets/experience.svg" width="100%" alt="experience: cto at husky, antler s26, protege, nymble, feedyou, cuub, highlight, udox" />
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@
 <details>
   <summary><sub>the longer story</sub></summary>
   <br/>
-  <sub>grew up in a small village in ukraine and started building websites as a teenager. dropped out of the best engineering high school in czechia, bounced between top prague agencies, spent 2,000 hours as a cto, went from english a1 to c1 in 9 months, and landed in chicago with $5k. joined runanywhere (yc w26), started protege, got into antler s26, pivoted to husky. four countries, roles across design, engineering, cto, and founder, and enough failed companies to stop romanticizing ideas. i care about useful software, speed, and getting the work into people's hands.</sub>
+  <sub>grew up in a small village in ukraine and started building websites as a teenager. dropped out of the best engineering high school in czechia, bounced between top prague agencies, spent 2,000 hours as a cto, went from english a1 to c1 in 9 months, and landed in chicago with $5k. started protege, got into antler s26, pivoted to husky. four countries, roles across design, engineering, cto, and founder, and enough failed companies to stop romanticizing ideas. i care about useful software, speed, and getting the work into people's hands.</sub>
 </details>
 
 <br/>
