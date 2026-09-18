@@ -135,7 +135,7 @@ const desc = `${now.toLocaleString("en-US", { month: "long", year: "numeric", ti
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const W = 1000;
-const H = 560;
+const H = 640;
 const PAD = 48;
 const FONT = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace";
 
@@ -161,7 +161,7 @@ const level = (n) => (n === 0 ? 0 : n <= cuts[0] ? 1 : n <= cuts[1] ? 2 : n <= c
 
 // Tapestry: 52 weeks folded into two 26-week columns, 7 days across. Reads as a
 // pixel portrait of the year, one week per row, oldest at the top.
-const CELL = 12;
+const CELL = 14;
 const GAP = 4;
 const PITCH = CELL + GAP;
 const GUTTER = 12;
@@ -193,9 +193,12 @@ const lines = [
   headline(`${LOGIN}@github`),
   kv("name", "yurii tovarnytskyi"),
   kv("role", "founder · engineer · designer"),
-  kv("building", "husky, underwriting ai for cre teams"),
+  kv("building", "husky @ aximon.ai, underwriting ai for cre teams"),
   kv("route", "ukraine → prague → chicago → san francisco"),
   kv("stack", "ts · next · react · node · python · postgres"),
+  kv("ai/ml", "llm pipelines · rag · agents · evals · on-device"),
+  kv("judged", "hackharvard · hackillinois · wildhacks · uncommonhacks"),
+  kv("mentored", "la hacks · won hack@brown 2026"),
   kv("writing", "yurii.blog"),
   kv("tags", "antler s26 · ex-yc eng · 4 hack wins · 4x judge"),
   blank(),
