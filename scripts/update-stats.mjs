@@ -198,7 +198,6 @@ const lines = [
   kv("route", "ukraine → prague → chicago → san francisco"),
   kv("stack", "ts · next · react · node · python · postgres"),
   kv("ai/ml", "llm pipelines · rag · agents · evals · on-device"),
-  kv("won", "4 hacks · hack@brown 2026 · uchicago · northwestern"),
   kv("writing", "yurii.blog"),
   kv("tags", "antler s26 · ex-yc eng · cto · hackathon judge"),
   blank(),

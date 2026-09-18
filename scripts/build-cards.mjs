@@ -176,8 +176,7 @@ function judgedCard() {
       body += `<line x1="${sx}" y1="${LOGO_Y}" x2="${sx}" y2="${ty + 46}" stroke="${C.border}" stroke-opacity=".06"/>`;
     }
   });
-  const footY = LOGO_Y + LOGO_H + 34 + 42 + 40;
-  body += `<text x="${PAD}" y="${footY}" fill="${C.key}" font-size="12">won 4, all 1st place · hack@brown 2026 · uchicago hackathon · northwestern competition · czech gov app redesign</text>`;
+  const footY = LOGO_Y + LOGO_H + 34 + 42;
   return card({
     cmd: "ls ~/judged",
     label: "hackathon judge & mentor",
