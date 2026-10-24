@@ -18,13 +18,16 @@ const RIGHT = W - PAD;
 // Kept short on purpose: what I actually reach for, not everything I've touched.
 // One row per group; the build fails if a group would wrap. A third element of
 // true highlights the group.
-// The vision row comes from the 90-day cv sprint (BallTrack): yolo on the phone,
-// a kalman filter that learns gravity, arcore scenes, a numpy net with hand backprop.
+// The vision and deep learning rows come from the 90-day cv sprint (BallTrack):
+// depth anything v2 in the browser, mediapipe face mesh + hand/body tracking,
+// vgg19 style transfer, a numpy gesture net with hand-written backprop.
 const STACK = [
   ["ai", ["multi-agent systems", "voice ai", "mcp", "rag", "evals", "ai dev tools"], true],
-  ["computer vision", ["yolo detection", "kalman tracking", "ar (arcore)", "neural nets by hand", "style transfer"], true],
+  ["computer vision", ["depth anything v2", "segmentation", "3d face mesh", "hand + pose tracking", "optical flow"], true],
+  ["deep learning", ["vgg19 style transfer", "backprop by hand", "yolo fine-tuning", "on-device inference"], true],
   ["frontend · design", ["next.js", "react", "figma", "photoshop", "illustrator"]],
-  ["backend · infra", ["nestjs", "prisma", "supabase", "turborepo", "opentelemetry", "playwright", "aws"]],
+  // Rook's own ooxml writer and imessage lane, the floor-hole glsl renderers.
+  ["backend · systems", ["custom xlsx engine", "opentelemetry", "imessage bots", "headless crawlers", "glsl shaders"]],
 ];
 
 // Tighter frame than the other cards so the whole thing stays a short strip.
