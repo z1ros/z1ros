@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the static cards: skills, ai, experience, judged.
+// Builds the static cards: stack, experience, judged.
 // Usage: node scripts/build-cards.mjs   (needs rsvg-convert for the logo PNGs)
 
 import { writeFileSync, readFileSync } from "node:fs";
@@ -13,95 +13,56 @@ const out = (name, svg) => writeFileSync(join(root, "assets", name), svg);
 const BODY_Y = 96;
 const RIGHT = W - PAD;
 
-// ------------------------------------------------------------------ skills
+// ------------------------------------------------------------------- stack
 
-const SKILLS = [
-  ["languages", ["typescript", "javascript", "python", "sql", "swift", "bash", "html / css"]],
-  [
-    "frontend",
-    ["next.js app router", "react", "react native / expo", "tailwind", "shadcn/ui", "radix", "framer motion", "zustand", "tanstack query", "react hook form", "zod", "three.js", "vite"],
-  ],
-  [
-    "backend",
-    ["node", "bun", "hono", "express", "fastapi", "trpc", "prisma", "drizzle", "supabase", "postgres", "pgvector", "redis", "graphql", "websockets", "edge functions", "queues / cron"],
-  ],
-  ["infra", ["aws (s3, lambda, ec2)", "vercel", "cloudflare workers", "docker", "github actions", "stripe", "sentry", "posthog", "resend", "playwright"]],
-  ["data", ["pandas", "numpy", "jupyter", "openpyxl / excel automation", "pdfplumber", "scraping (playwright, puppeteer)", "sql analytics"]],
-  ["design", ["product design", "design systems", "figma", "brand identity", "motion", "prototyping", "ux research", "figma → code"]],
-  ["founder", ["0 → 1", "gtm", "discovery calls", "pitching", "hiring", "fundraising", "short-form content"]],
+// Kept short on purpose: what I actually reach for, not everything I've touched.
+// One row per group; the build fails if a group would wrap. A third element of
+// true highlights the group.
+const STACK = [
+  ["ai", ["agents", "mcp", "tool calling", "rag", "pgvector", "evals", "document ai", "langgraph"], true],
+  ["frontend · design", ["typescript", "next.js", "react", "react native", "tailwind", "three.js", "figma"]],
+  ["backend · infra", ["node", "python", "fastapi", "postgres", "supabase", "redis", "aws", "docker", "vercel"]],
 ];
 
-
-const AI = [
-  [
-    "llm engineering",
-    ["anthropic sdk", "openai sdk", "gemini api", "vercel ai sdk", "streaming (sse)", "tool calling", "structured outputs (json schema, zod)", "prompt caching", "batch api", "extended thinking", "vision / multimodal", "long-context strategies", "token budgeting", "model routing + fallbacks", "retries / rate limits", "cost & latency tuning"],
-  ],
-  [
-    "agents",
-    ["react / plan-execute loops", "langgraph", "mcp servers + clients", "multi-agent orchestration", "tool design + sandboxing", "agent memory (episodic, vector)", "human-in-the-loop", "computer use", "browser agents (playwright)", "coding agents (claude code, codex)", "agent tracing + replay"],
-  ],
-  [
-    "retrieval",
-    ["rag pipelines", "chunking (semantic, recursive, layout-aware)", "embeddings (text-embedding-3, voyage, bge)", "pgvector", "pinecone", "qdrant", "hybrid search (bm25 + vectors)", "reranking (cohere, cross-encoders)", "query rewriting / hyde", "metadata filtering", "citation grounding", "graph rag"],
-  ],
-  [
-    "document ai",
-    ["pdf parsing (pymupdf, pdfplumber, unstructured)", "ocr (tesseract, textract, azure di)", "layout + table extraction", "excel / rent roll / t12 parsing", "schema-driven extraction", "confidence scoring", "source-linked outputs", "entity resolution + dedup"],
-  ],
-  [
-    "evals & safety",
-    ["golden sets + regression suites", "promptfoo", "braintrust", "llm-as-judge", "rubric grading", "a/b prompt testing", "input / output guardrails", "pii redaction", "prompt injection defense", "red-teaming", "observability (langfuse, helicone)"],
-  ],
-  [
-    "models & training",
-    ["pytorch", "hugging face transformers", "lora / qlora (peft)", "distillation", "quantization (gguf, int4/8)", "llama.cpp", "vllm / ollama serving", "core ml", "whisper / faster-whisper", "speech-to-text pipelines", "embedding fine-tuning", "sklearn / xgboost"],
-  ],
-];
-
-function pillsCard(GROUPS, { cmd, label, title, hot = false }) {
+// Tighter frame than the other cards so the whole thing stays a short strip.
+function pillsCard(GROUPS, { cmd, label, title }) {
+  const P = 36;
   const LABEL_X = PAD;
   const PILL_X = PAD + 164;
-  const PILL_H = 28;
+  const PILL_H = 26;
   const PILL_FS = 13;
   const PAD_X = 12;
   const GAP = 8;
   const LINE = PILL_H + 8;
-  const GROUP_GAP = 14;
-  let y = BODY_Y;
+  let y = P + 36;
   let body = "";
-  for (const [label, items] of GROUPS) {
+  for (const [label, items, hot = false] of GROUPS) {
     let x = PILL_X;
-    let rowY = y;
-    body += `<text x="${LABEL_X}" y="${rowY + 18}" fill="${C.key}" font-size="12">${esc(label)}</text>`;
+    body += `<text x="${LABEL_X}" y="${y + 17.5}" fill="${hot ? C.accent : C.key}" font-size="12">${esc(label)}</text>`;
     for (const item of items) {
       const w = Math.ceil(textW(item, PILL_FS) + PAD_X * 2);
-      if (x + w > RIGHT) {
-        x = PILL_X;
-        rowY += LINE;
-      }
+      if (x + w > RIGHT) throw new Error(`stack group "${label}" wraps at "${item}"`);
       const fill = hot ? "#1a1533" : C.pill;
       const stroke = hot ? "#4c3d8f" : C.pillStroke;
       const color = hot ? C.accentSoft : C.value;
-      body += `<rect x="${x}" y="${rowY}" width="${w}" height="${PILL_H}" rx="6" fill="${fill}" stroke="${stroke}"/>`;
-      body += `<text x="${x + w / 2}" y="${rowY + 18}" fill="${color}" font-size="${PILL_FS}" text-anchor="middle">${esc(item)}</text>`;
+      body += `<rect x="${x}" y="${y}" width="${w}" height="${PILL_H}" rx="6" fill="${fill}" stroke="${stroke}"/>`;
+      body += `<text x="${x + w / 2}" y="${y + 17.5}" fill="${color}" font-size="${PILL_FS}" text-anchor="middle">${esc(item)}</text>`;
       x += w + GAP;
     }
-    y = rowY + LINE + GROUP_GAP;
+    y += LINE;
   }
-  const count = GROUPS.reduce((n, [, items]) => n + items.length, 0);
   return card({
     cmd,
-    label: `${count} ${label}`,
+    label,
     body,
-    height: y - GROUP_GAP + PAD - 8,
+    height: y - GAP + P,
+    pad: P,
     title,
     desc: GROUPS.map(([l, i]) => `${l}: ${i.join(", ")}`).join(". "),
   });
 }
 
-const skillsCard = () => pillsCard(SKILLS, { cmd: "skills --all", label: "tags", title: "skills" });
-const aiCard = () => pillsCard(AI, { cmd: "skills --ai", label: "tags · shipped in production", title: "ai / llm engineering", hot: true });
+const stackCard = () => pillsCard(STACK, { cmd: "cat stack.txt", label: "shipped in production", title: "stack" });
 
 // -------------------------------------------------------------- experience
 
@@ -110,17 +71,13 @@ const EXPERIENCE = [
     when: "2026 → now",
     role: "cto",
     org: "aximon · aximon.ai",
-    blurb: "underwriting ai for cre teams · $60k contracted in 5 weeks · backed by an a16z scout",
+    blurb: "underwriting ai for commercial real estate teams",
     live: true,
   },
   { when: "2026", role: "founder in residence", org: "antler s26", blurb: "san francisco · ~2% acceptance · pivoted protege → aximon" },
   { when: "2026", role: "ceo", org: "protege", blurb: "ai coding mentor that lives in your editor · 1.6k downloads · sh1p s26" },
-  { when: "2026", role: "cto", org: "nymble", blurb: "early-stage build" },
-  { when: "2025", role: "cto", org: "stealth startup · brno", blurb: "2,000 hours · walked away when the bar stopped rising" },
-  { when: "2025", role: "software engineer", org: "feedyou", blurb: "solo-shipped a $22k ai support agent · #1 microsoft ai 2019" },
-  { when: "2025", role: "design engineer", org: "cuub", blurb: "largest power-bank rental network in illinois · raised $270k+" },
-  { when: "2025", role: "design engineer", org: "highlight · nyc", blurb: "disney, airbnb, american express, johnson & johnson, deloitte" },
-  { when: "2022 → 2024", role: "design engineer", org: "udox", blurb: "2 years · where it started" },
+  { when: "2025", role: "software engineer", org: "feedyou", blurb: "solo-shipped a $22k ai support agent" },
+  { when: "2022 → 2025", role: "design engineer", org: "highlight · cuub · udox", blurb: "client work for disney, airbnb, american express, deloitte" },
 ];
 
 function experienceCard() {
@@ -142,8 +99,8 @@ function experienceCard() {
     body += `<text x="${TEXT_X}" y="${y + 25}" fill="${C.dim}" font-size="12">${esc(e.blurb)}</text>`;
   });
   return card({
-    cmd: "tail -n 9 experience.log",
-    label: "swe → cto → design → founder",
+    cmd: `tail -n ${EXPERIENCE.length} experience.log`,
+    label: "design → engineering → founder",
     body,
     height: bottom + 30 + PAD,
     title: "experience",
@@ -194,8 +151,7 @@ function judgedCard() {
   });
 }
 
-out("skills.svg", skillsCard());
-out("ai.svg", aiCard());
+out("stack.svg", stackCard());
 out("experience.svg", experienceCard());
 out("judged.svg", judgedCard());
-console.log("built skills, ai, experience, judged");
+console.log("built stack, experience, judged");

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/signal.svg" width="100%" alt="github signal" />
+  <img src="./assets/signal.svg" alt="October 2026 snapshot: 5,956 total contributions since may 2022, 4,721 in the last 12 months, longest streak 90 days, current streak 90 days" width="100%" />
 </p>
 
 <p align="center">
@@ -7,15 +7,11 @@
 </p>
 
 <p align="center">
-  <img src="./assets/ai.svg" width="100%" alt="ai / llm engineering: llm engineering, agents, retrieval, document ai, evals and safety, models and training" />
+  <img src="./assets/experience.svg" width="100%" alt="experience: cto at aximon, antler s26, ceo at protege, feedyou, design engineer at highlight, cuub, udox" />
 </p>
 
 <p align="center">
-  <img src="./assets/skills.svg" width="100%" alt="skills: languages, frontend, backend, infra, data, design, founder" />
-</p>
-
-<p align="center">
-  <img src="./assets/experience.svg" width="100%" alt="experience: cto at aximon, antler s26, protege, nymble, feedyou, cuub, highlight, udox" />
+  <img src="./assets/stack.svg" width="100%" alt="stack: ai, frontend, backend, infra, design" />
 </p>
 
 <p align="center">

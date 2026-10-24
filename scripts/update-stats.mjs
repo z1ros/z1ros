@@ -35,7 +35,6 @@ async function gql(query, variables) {
 const COLLECTION = `query($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
     contributionsCollection(from: $from, to: $to) {
-      totalCommitContributions
       contributionCalendar {
         totalContributions
         weeks { contributionDays { date contributionCount } }
@@ -62,13 +61,11 @@ for (let from = new Date(created); from < now; ) {
 }
 
 let total = 0;
-let publicCommits = 0;
 const days = [];
 for (const w of windows) {
   const { user: u } = await gql(COLLECTION, { login: LOGIN, ...w });
   const c = u.contributionsCollection;
   total += c.contributionCalendar.totalContributions;
-  publicCommits += c.totalCommitContributions;
   for (const week of c.contributionCalendar.weeks) days.push(...week.contributionDays);
 }
 
@@ -124,11 +121,14 @@ const fmtDay = (d) => `${mon(d)} ${new Date(d + "T00:00:00Z").getUTCDate()}`;
 const today = now.toISOString().slice(0, 10);
 const todayLabel = `${fmtDay(today)} ${today.slice(0, 4)}`;
 const sinceLabel = `${created.toLocaleString("en-US", { month: "short", timeZone: "UTC" }).toLowerCase()} ${created.getUTCFullYear()}`;
-const streakLabel = best.len
-  ? `${best.len} days · ${fmtDay(best.start)} → ${fmtDay(best.end)} ${best.end.slice(0, 4)}`
-  : "none yet";
+// One line for both streaks: when the current run is the record, say so once.
+const streakLabel = !best.len
+  ? "none yet"
+  : current >= best.len
+    ? `${best.len} days and counting`
+    : `${best.len} days best${current ? ` · ${current} now` : ""}`;
 
-const desc = `${now.toLocaleString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })} snapshot: ${fmtNum(total)} total contributions since ${sinceLabel}, ${fmtNum(lastYear)} in the last 12 months, ${fmtNum(publicCommits)} public commits, longest streak ${best.len} days, current streak ${current} days.`;
+const desc = `${now.toLocaleString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })} snapshot: ${fmtNum(total)} total contributions since ${sinceLabel}, ${fmtNum(lastYear)} in the last 12 months, longest streak ${best.len} days, current streak ${current} days.`;
 
 // ---------------------------------------------------------------- svg
 
@@ -161,7 +161,7 @@ const level = (n) => (n === 0 ? 0 : n <= cuts[0] ? 1 : n <= cuts[1] ? 2 : n <= c
 
 // Tapestry: 52 weeks folded into two 26-week columns, 7 days across. Reads as a
 // pixel portrait of the year, one week per row, oldest at the top.
-const CELL = 14;
+const CELL = 11;
 const GAP = 4;
 const PITCH = CELL + GAP;
 const GUTTER = 12;
@@ -196,22 +196,16 @@ const lines = [
   kv("building", "aximon.ai, underwriting ai for cre teams"),
   kv("traction", "$60k contracted in 5 weeks · backed by an a16z scout"),
   kv("route", "ukraine → prague → chicago → san francisco"),
-  kv("stack", "ts · next · react · node · python · postgres"),
-  kv("ai/ml", "llm pipelines · rag · agents · evals · on-device"),
-  kv("writing", "yurii.blog"),
-  kv("tags", "antler s26 · cto · hackathon judge"),
   blank(),
   headline("signal"),
   kv("all-time", `${fmtNum(total)} contributions since ${sinceLabel}`),
   kv("last 12 mo", `${fmtNum(lastYear)} contributions`),
-  kv("public", `${fmtNum(publicCommits)} commits`),
   kv("streak", streakLabel),
-  kv("current", `${current} day${current === 1 ? "" : "s"}`),
   kv("refreshed", `${todayLabel} · daily`),
 ];
 
 const TEXT_X = TAP_X + TAP_W + 56;
-const LINE = 24;
+const LINE = 28;
 const FS = 14;
 let textY = TAP_Y + FS;
 let text = "";
