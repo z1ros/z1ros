@@ -18,20 +18,23 @@ const RIGHT = W - PAD;
 // Kept short on purpose: what I actually reach for, not everything I've touched.
 // One row per group; the build fails if a group would wrap. A third element of
 // true highlights the group.
+// The ai row names things built, not tools everyone lists: rook's document →
+// proforma pipeline and its sealed answer-key eval gate, the claude code agent
+// fleets, the headphones voice agent, protege.
 const STACK = [
-  ["ai", ["agents", "mcp", "tool calling", "rag", "pgvector", "evals", "document ai", "langgraph"], true],
-  ["frontend · design", ["typescript", "next.js", "react", "react native", "tailwind", "three.js", "figma"]],
-  ["backend · infra", ["node", "python", "fastapi", "postgres", "supabase", "redis", "aws", "docker", "vercel"]],
+  ["ai", ["rent roll → proforma", "sealed-key evals", "agent fleets", "voice agents", "ai coding mentor"], true],
+  ["frontend · design", ["next.js", "react", "figma", "photoshop", "illustrator"]],
+  ["backend · infra", ["nestjs", "prisma", "supabase", "turborepo", "opentelemetry", "playwright", "aws"]],
 ];
 
 // Tighter frame than the other cards so the whole thing stays a short strip.
 function pillsCard(GROUPS, { cmd, label, title }) {
   const P = 36;
   const LABEL_X = PAD;
-  const PILL_X = PAD + 164;
+  const PILL_X = PAD + 148;
   const PILL_H = 26;
   const PILL_FS = 13;
-  const PAD_X = 12;
+  const PAD_X = 10;
   const GAP = 8;
   const LINE = PILL_H + 8;
   let y = P + 36;
