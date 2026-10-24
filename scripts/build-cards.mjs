@@ -18,11 +18,11 @@ const RIGHT = W - PAD;
 // Kept short on purpose: what I actually reach for, not everything I've touched.
 // One row per group; the build fails if a group would wrap. A third element of
 // true highlights the group.
-// The ai row names things built, not tools everyone lists: rook's document →
-// proforma pipeline and its sealed answer-key eval gate, the claude code agent
-// fleets, the headphones voice agent, protege.
+// The vision row comes from the 90-day cv sprint (BallTrack): yolo on the phone,
+// a kalman filter that learns gravity, arcore scenes, a numpy net with hand backprop.
 const STACK = [
-  ["ai", ["rent roll → proforma", "sealed-key evals", "agent fleets", "voice agents", "ai coding mentor"], true],
+  ["ai", ["multi-agent systems", "voice ai", "mcp", "rag", "evals", "ai dev tools"], true],
+  ["computer vision", ["yolo detection", "kalman tracking", "ar (arcore)", "neural nets by hand", "style transfer"], true],
   ["frontend · design", ["next.js", "react", "figma", "photoshop", "illustrator"]],
   ["backend · infra", ["nestjs", "prisma", "supabase", "turborepo", "opentelemetry", "playwright", "aws"]],
 ];
@@ -36,7 +36,8 @@ function pillsCard(GROUPS, { cmd, label, title }) {
   const PILL_FS = 13;
   const PAD_X = 10;
   const GAP = 8;
-  const LINE = PILL_H + 8;
+  const ROW_GAP = 6;
+  const LINE = PILL_H + ROW_GAP;
   let y = P + 36;
   let body = "";
   for (const [label, items, hot = false] of GROUPS) {
@@ -58,14 +59,14 @@ function pillsCard(GROUPS, { cmd, label, title }) {
     cmd,
     label,
     body,
-    height: y - GAP + P,
+    height: y - ROW_GAP + P,
     pad: P,
     title,
     desc: GROUPS.map(([l, i]) => `${l}: ${i.join(", ")}`).join(". "),
   });
 }
 
-const stackCard = () => pillsCard(STACK, { cmd: "cat stack.txt", label: "shipped in production", title: "stack" });
+const stackCard = () => pillsCard(STACK, { cmd: "cat stack.txt", label: "built, not just listed", title: "stack" });
 
 // -------------------------------------------------------------- experience
 
