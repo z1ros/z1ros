@@ -1,88 +1,16 @@
 #!/usr/bin/env node
-// Builds the static cards: stack, experience, judged.
+// Builds the static cards: experience, judged.
 // Usage: node scripts/build-cards.mjs   (needs rsvg-convert for the logo PNGs)
 
 import { writeFileSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { W, PAD, FS, C, esc, textW, card, heading } from "./theme.mjs";
+import { W, PAD, FS, C, esc, card, heading } from "./theme.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const out = (name, svg) => writeFileSync(join(root, "assets", name), svg);
 const BODY_Y = 96;
-const RIGHT = W - PAD;
-
-// ------------------------------------------------------------------- stack
-
-// Kept short on purpose: what I actually reach for, not everything I've touched.
-// No row labels (they stay in the alt text): every tag flows across the full
-// width in group order and each row is centered. A third element of true
-// highlights the group.
-// The vision and deep learning rows come from the 90-day cv sprint (BallTrack):
-// depth anything v2 in the browser, mediapipe face mesh + hand/body tracking,
-// vgg19 style transfer, a numpy gesture net with hand-written backprop.
-const STACK = [
-  ["ai", ["multi-agent systems", "voice ai", "mcp", "rag", "evals", "ai dev tools"], true],
-  ["computer vision", ["depth anything v2", "segmentation", "3d face mesh", "hand + pose tracking", "optical flow"], true],
-  ["deep learning", ["vgg19 style transfer", "backprop by hand", "yolo fine-tuning", "on-device inference"], true],
-  ["frontend · design", ["next.js", "react", "figma", "photoshop", "illustrator"]],
-  // Rook's own ooxml writer and imessage lane, the floor-hole glsl renderers.
-  ["backend · systems", ["custom xlsx engine", "opentelemetry", "imessage bots", "headless crawlers", "glsl shaders"]],
-];
-
-// Tighter frame than the other cards so the whole thing stays a short strip.
-function pillsCard(GROUPS, { cmd, label, title }) {
-  const P = 36;
-  const PILL_H = 26;
-  const PILL_FS = 13;
-  const PAD_X = 10;
-  const GAP = 8;
-  const ROW_GAP = 6;
-  const LINE = PILL_H + ROW_GAP;
-
-  // Pack into rows first so each row can be centered once its width is known.
-  const rows = [[]];
-  let rowW = 0;
-  for (const [, items, hot = false] of GROUPS) {
-    for (const item of items) {
-      const w = Math.ceil(textW(item, PILL_FS) + PAD_X * 2);
-      if (rowW && rowW + GAP + w > RIGHT - PAD) {
-        rows.push([]);
-        rowW = 0;
-      }
-      rowW += (rowW ? GAP : 0) + w;
-      rows.at(-1).push({ item, w, hot });
-    }
-  }
-
-  let y = cmd ? P + 36 : P;
-  let body = "";
-  for (const row of rows) {
-    const total = row.reduce((n, p) => n + p.w, 0) + GAP * (row.length - 1);
-    let x = (W - total) / 2;
-    for (const { item, w, hot } of row) {
-      const fill = hot ? "#1a1533" : C.pill;
-      const stroke = hot ? "#4c3d8f" : C.pillStroke;
-      const color = hot ? C.accentSoft : C.value;
-      body += `<rect x="${x}" y="${y}" width="${w}" height="${PILL_H}" rx="6" fill="${fill}" stroke="${stroke}"/>`;
-      body += `<text x="${x + w / 2}" y="${y + 17.5}" fill="${color}" font-size="${PILL_FS}" text-anchor="middle">${esc(item)}</text>`;
-      x += w + GAP;
-    }
-    y += LINE;
-  }
-  return card({
-    cmd,
-    label,
-    body,
-    height: y - ROW_GAP + P,
-    pad: P,
-    title,
-    desc: GROUPS.map(([l, i]) => `${l}: ${i.join(", ")}`).join(". "),
-  });
-}
-
-const stackCard = () => pillsCard(STACK, { title: "stack" });
 
 // -------------------------------------------------------------- experience
 
@@ -171,7 +99,6 @@ function judgedCard() {
   });
 }
 
-out("stack.svg", stackCard());
 out("experience.svg", experienceCard());
 out("judged.svg", judgedCard());
-console.log("built stack, experience, judged");
+console.log("built experience, judged");

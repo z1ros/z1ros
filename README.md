@@ -11,10 +11,6 @@
 </p>
 
 <p align="center">
-  <img src="./assets/stack.svg" width="100%" alt="stack: ai, computer vision, deep learning, frontend, design, backend and systems" />
-</p>
-
-<p align="center">
   <img src="./assets/judged.svg" width="100%" alt="hackathons judged: hackharvard, hackillinois, la hacks, wildhacks" />
 </p>
 

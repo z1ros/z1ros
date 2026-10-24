@@ -28,8 +28,8 @@ export const esc = (s) =>
 
 export const textW = (s, fs = FS) => s.length * fs * CHAR;
 
-// Card frame: optional prompt line top-left, optional dim label top-right, body, dynamic height.
-export function card({ cmd, label, body, height, title, desc, pad = PAD }) {
+// Card frame: prompt line top-left, optional dim label top-right, body, dynamic height.
+export function card({ cmd, label, body, height, title, desc }) {
   const H = Math.round(height);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="title desc" xml:space="preserve">
   <title id="title">${esc(title)}</title>
@@ -37,8 +37,8 @@ export function card({ cmd, label, body, height, title, desc, pad = PAD }) {
   <rect width="${W}" height="${H}" rx="14" fill="${C.bg}"/>
   <rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="13.5" fill="none" stroke="${C.border}" stroke-opacity=".08"/>
   <g font-family="${FONT}" font-size="${FS}">
-    ${cmd ? `<text x="${PAD}" y="${pad + 4}"><tspan fill="${C.key}">${esc(`${LOGIN} ~ %`)}</tspan><tspan fill="${C.value}"> ${esc(cmd)}</tspan></text>` : ""}
-    ${label ? `<text x="${W - PAD}" y="${pad + 4}" fill="${C.key}" font-size="12" text-anchor="end">${esc(label)}</text>` : ""}
+    <text x="${PAD}" y="${PAD + 4}"><tspan fill="${C.key}">${esc(`${LOGIN} ~ %`)}</tspan><tspan fill="${C.value}"> ${esc(cmd)}</tspan></text>
+    ${label ? `<text x="${W - PAD}" y="${PAD + 4}" fill="${C.key}" font-size="12" text-anchor="end">${esc(label)}</text>` : ""}
     ${body}
   </g>
 </svg>
