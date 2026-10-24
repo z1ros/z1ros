@@ -16,8 +16,9 @@ const RIGHT = W - PAD;
 // ------------------------------------------------------------------- stack
 
 // Kept short on purpose: what I actually reach for, not everything I've touched.
-// One row per group; the build fails if a group would wrap. A third element of
-// true highlights the group.
+// No row labels (they stay in the alt text): every tag flows across the full
+// width in group order and each row is centered. A third element of true
+// highlights the group.
 // The vision and deep learning rows come from the 90-day cv sprint (BallTrack):
 // depth anything v2 in the browser, mediapipe face mesh + hand/body tracking,
 // vgg19 style transfer, a numpy gesture net with hand-written backprop.
@@ -33,22 +34,34 @@ const STACK = [
 // Tighter frame than the other cards so the whole thing stays a short strip.
 function pillsCard(GROUPS, { cmd, label, title }) {
   const P = 36;
-  const LABEL_X = PAD;
-  const PILL_X = PAD + 148;
   const PILL_H = 26;
   const PILL_FS = 13;
   const PAD_X = 10;
   const GAP = 8;
   const ROW_GAP = 6;
   const LINE = PILL_H + ROW_GAP;
-  let y = cmd ? P + 36 : P;
-  let body = "";
-  for (const [label, items, hot = false] of GROUPS) {
-    let x = PILL_X;
-    body += `<text x="${LABEL_X}" y="${y + 17.5}" fill="${hot ? C.accent : C.key}" font-size="12">${esc(label)}</text>`;
+
+  // Pack into rows first so each row can be centered once its width is known.
+  const rows = [[]];
+  let rowW = 0;
+  for (const [, items, hot = false] of GROUPS) {
     for (const item of items) {
       const w = Math.ceil(textW(item, PILL_FS) + PAD_X * 2);
-      if (x + w > RIGHT) throw new Error(`stack group "${label}" wraps at "${item}"`);
+      if (rowW && rowW + GAP + w > RIGHT - PAD) {
+        rows.push([]);
+        rowW = 0;
+      }
+      rowW += (rowW ? GAP : 0) + w;
+      rows.at(-1).push({ item, w, hot });
+    }
+  }
+
+  let y = cmd ? P + 36 : P;
+  let body = "";
+  for (const row of rows) {
+    const total = row.reduce((n, p) => n + p.w, 0) + GAP * (row.length - 1);
+    let x = (W - total) / 2;
+    for (const { item, w, hot } of row) {
       const fill = hot ? "#1a1533" : C.pill;
       const stroke = hot ? "#4c3d8f" : C.pillStroke;
       const color = hot ? C.accentSoft : C.value;
