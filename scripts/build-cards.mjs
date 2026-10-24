@@ -41,7 +41,7 @@ function pillsCard(GROUPS, { cmd, label, title }) {
   const GAP = 8;
   const ROW_GAP = 6;
   const LINE = PILL_H + ROW_GAP;
-  let y = P + 36;
+  let y = cmd ? P + 36 : P;
   let body = "";
   for (const [label, items, hot = false] of GROUPS) {
     let x = PILL_X;
@@ -69,7 +69,7 @@ function pillsCard(GROUPS, { cmd, label, title }) {
   });
 }
 
-const stackCard = () => pillsCard(STACK, { cmd: "cat stack.txt", label: "built, not just listed", title: "stack" });
+const stackCard = () => pillsCard(STACK, { title: "stack" });
 
 // -------------------------------------------------------------- experience
 
