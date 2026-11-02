@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/signal.svg" alt="November 2026 snapshot: 6,403 total contributions since may 2022, 5,168 in the last 12 months, longest streak 98 days, current streak 98 days" width="100%" />
+  <img src="./assets/signal.svg" alt="November 2026 snapshot: 6,408 total contributions since may 2022, 5,173 in the last 12 months, longest streak 100 days, current streak 100 days" width="100%" />
 </p>
 
 <p align="center">
